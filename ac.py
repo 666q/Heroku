@@ -1,34 +1,26 @@
 import os
-from flask import flask, jsonify, request
+from flask import Flask, jsonify, request
+from math import sqrt
 
-app = flask(__name__)
-
+app = Flask(name)
 @app.route('/')
-not_p = []
-e = []
-lim = 541
+def primos():
+    c = 1
+    p = 1
+    numero = 3
+    primos = "2,"
 
-
-def primo(num):
-    if num != 1:
-        t = True
-        for i in range(2, num):
-            if num % i == 0:
-                t = False
+    while p < 100:
+        eprimo = 1
+        for i in range(2, numero):
+            if numero % i == 0:
+                eprimo = 0
                 break
-        return t
-
- 
-for num in range(2, lim + 1):
-    test = primo(num)
-    if (test):
-        e.append(num)
-    else:
-        not_p.append(num)
-
-print("Números primos: ", e)
-
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8000))
+        if (eprimo):
+            primos = primos + str(numero) + ","
+            p += 1
+        numero += 1
+    return primos
+if name == "main":
+    port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
-
