@@ -1,3 +1,9 @@
+import os
+from flask import flask, jsonify, request
+
+app = flask(__name__)
+
+@app.route('/')
 not_p = []
 e = []
 lim = 541
@@ -21,3 +27,8 @@ for num in range(2, lim + 1):
         not_p.append(num)
 
 print("Números primos: ", e)
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))
+    app.run(host='0.0.0.0', port=port)
+
